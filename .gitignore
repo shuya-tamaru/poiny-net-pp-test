@@ -1,0 +1,8 @@
+.vscode
+.DS_Store
+pointnet_env
+results
+data
+__pycache__/
+*.py[cod]
+*$py.class
