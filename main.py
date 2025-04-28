@@ -1,18 +1,26 @@
 import torch
+import sys
+from src.core.learning import learning
+from src.core.segment import segment
+
+NUM_CLASSES = 12
 
 
-def main():
-    print("Hello, PointNet World!")
-    print(f"PyTorch version: {torch.__version__}")
+def check_if_cuda_available():
+    if torch.cuda.is_available():
+        print("CUDA is available!")
+    else:
+        print("CUDA is not available.")
 
-    # GPUが使用可能か確認
-    print(f"CUDA available: {torch.cuda.is_available()}")
 
-    # テンソル作成のデモ
-    x = torch.rand(5, 3)
-    print("Random Tensor:")
-    print(x)
+def main(mode="learning"):
+    check_if_cuda_available()
+    if mode == "learning":
+        learning(num_classes=NUM_CLASSES)
+    else:
+        segment(num_classes=NUM_CLASSES)
 
 
 if __name__ == "__main__":
-    main()
+    mode = sys.argv[1] if len(sys.argv) > 1 else None
+    main(mode)
